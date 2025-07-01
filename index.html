@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТурГений - Алтай ждёт тебя. 300+ развлечений в один клик</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Хедер */
+        .header {
+            background: linear-gradient(135deg, #2C5530 0%, #1a3a1f 100%);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+        
+        .cta-header {
+            background: #FFD700;
+            color: #2C5530;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .cta-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Главный экран */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23E8F5E9" width="1200" height="800"/><path fill="%232C5530" d="M0 400L200 300L400 450L600 250L800 400L1000 200L1200 350V800H0V400Z" opacity="0.3"/><path fill="%234CAF50" d="M0 500L200 400L400 550L600 350L800 500L1000 300L1200 450V800H0V500Z" opacity="0.2"/></svg>') center/cover;
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .hero-points {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-point {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+        
+        .check {
+            width: 24px;
+            height: 24px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .cta-main {
+            display: inline-block;
+            background: #FFD700;
+            color: #2C5530;
+            padding: 20px 50px;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .cta-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Секция "Что это" */
+        .what-is {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #2C5530;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #2C5530;
+        }
+        
+        .feature-desc {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Как это работает */
+        .how-it-works {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #2C5530;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2C5530;
+        }
+        
+        /* Секция безопасности */
+        .safety {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .safety-item {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+        }
+        
+        .safety-icon {
+            font-size: 32px;
+            color: #4CAF50;
+            flex-shrink: 0;
+        }
+        
+        .safety-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2C5530;
+        }
+        
+        /* Финальный CTA */
+        .final-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2C5530 0%, #1a3a1f 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .final-cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .guarantee {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 50px auto 0;
+        }
+        
+        .guarantee-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+        
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .hero-points {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Хедер -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ТурГений</div>
+                <a href="#start" class="cta-header">Найти развлечение →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный экран -->
+    <section class="hero">
+        <div class="container">
+            <h1>Алтай ждёт тебя.<br>300+ развлечений в один клик</h1>
+            <p class="hero-subtitle">Параплан, рафтинг, конные прогулки и еще 297 приключений</p>
+            
+            <div class="hero-points">
+                <div class="hero-point">
+                    <div class="check">✓</div>
+                    <span>Бронируй напрямую у исполнителей</span>
+                </div>
+                <div class="hero-point">
+                    <div class="check">✓</div>
+                    <span>Вернём деньги за 48 часов до события</span>
+                </div>
+                <div class="hero-point">
+                    <div class="check">✓</div>
+                    <span>Все общение в Telegram</span>
+                </div>
+            </div>
+            
+            <a href="#start" class="cta-main">Выбрать развлечение сейчас</a>
+        </div>
+    </section>
+
+    <!-- Что это такое -->
+    <section class="what-is">
+        <div class="container">
+            <h2 class="section-title">Что такое ТурГений?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3 class="feature-title">Все развлечения Алтая в одном месте</h3>
+                    <p class="feature-desc">Мы собрали 300+ активностей: от спокойных экскурсий до экстремальных приключений. Фильтры помогут найти именно то, что нужно вам.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">Прямая связь с организаторами</h3>
+                    <p class="feature-desc">Никаких посредников и накруток. Вы общаетесь напрямую с теми, кто проводит мероприятие. Все вопросы решаются в чате Telegram.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Деньги в безопасности</h3>
+                    <p class="feature-desc">Оплата идет напрямую исполнителю после подтверждения брони. Отмените за 48 часов — получите полный возврат. Без штрафов и комиссий.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как это работает -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как это работает?</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Выберите развлечение</h3>
+                    <p>По карте, по интересам или по дате. Смотрите фото, читайте описание, проверяйте цены.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Забронируйте в 2 клика</h3>
+                    <p>Нажмите "Забронировать" и попадете в чат с организатором. Задайте вопросы, уточните детали.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Оплатите после подтверждения</h3>
+                    <p>Когда все детали согласованы, оплачиваете напрямую организатору. Мы контролируем процесс.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Наслаждайтесь отдыхом</h3>
+                    <p>Приезжайте и получайте эмоции! Все контакты и детали сохранены в вашем Telegram.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Безопасность -->
+    <section class="safety">
+        <div class="container">
+            <h2 class="section-title">Почему это безопасно?</h2>
+            
+            <div class="safety-grid">
+                <div class="safety-item">
+                    <div class="safety-icon">✅</div>
+                    <div class="safety-content">
+                        <h3>Проверенные организаторы</h3>
+                        <p>Каждый исполнитель проходит проверку документов. Мы знаем, кто проводит мероприятия.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-item">
+                    <div class="safety-icon">💬</div>
+                    <div class="safety-content">
+                        <h3>Менеджер всегда на связи</h3>
+                        <p>В каждом чате есть наш менеджер. Он поможет решить любые вопросы и проконтролирует качество.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-item">
+                    <div class="safety-icon">📱</div>
+                    <div class="safety-content">
+                        <h3>Все в вашем Telegram</h3>
+                        <p>История переписки, контакты, детали брони — все сохраняется в вашем мессенджере.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-item">
+                    <div class="safety-icon">🔄</div>
+                    <div class="safety-content">
+                        <h3>Гибкие условия отмены</h3>
+                        <p>Планы изменились? Отмените бронь за 48 часов и получите 100% возврат средств.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-item">
+                    <div class="safety-icon">🏆</div>
+                    <div class="safety-content">
+                        <h3>Рейтинг и отзывы</h3>
+                        <p>Смотрите реальные отзывы других туристов. Выбирайте только лучших организаторов.</p>
+                    </div>
+                </div>
+                
+                <div class="safety-item">
+                    <div class="safety-icon">📄</div>
+                    <div class="safety-content">
+                        <h3>Прозрачные условия</h3>
+                        <p>Никаких скрытых платежей. Вы видите финальную цену сразу, платите напрямую исполнителю.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Финальный CTA -->
+    <section class="final-cta" id="start">
+        <div class="container">
+            <h2>Готовы к приключениям на Алтае?</h2>
+            <p>300+ развлечений ждут вас прямо сейчас</p>
+            
+            <a href="https://t.me/TurGeniiBot" class="cta-main">Открыть каталог развлечений</a>
+            
+            <div class="guarantee">
+                <h3 class="guarantee-title">🛡️ Наша гарантия</h3>
+                <p>Если что-то пойдет не так — мы на вашей стороне. Поможем решить любую проблему или вернем деньги. Ваш отдых должен быть идеальным!</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
